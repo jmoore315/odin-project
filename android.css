@@ -1,0 +1,143 @@
+#body {
+	width: 220px;
+	height: 200px;
+	color: green;
+	background-color: rgb(165, 198, 59);
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 300;
+	border-bottom-right-radius: 25px;
+	border-bottom-left-radius: 25px;
+	position: relative;
+}
+
+#head {
+	width: 220px;
+	height: 110px;
+	background-color: inherit;
+	position: relative;
+	top: -120px;
+	border-radius: 0;
+	border-top-right-radius: 110px;
+	border-top-left-radius: 110px;
+}
+
+.leg {
+	width: 50px;
+	height: 100px;
+	position: absolute;
+	background-color: inherit;
+	border-radius: 25px;
+	display: inline-block;
+	bottom: -75;
+}
+
+#left-leg {
+	left: 15%;
+}
+
+#right-leg {
+	right: 15%	;
+}
+
+.arm {
+	width: 50px;
+	height: 150px;
+	position: absolute;
+	background-color: inherit;
+	border-radius: 25px;
+	display: inline-block;
+	top: 0%;
+}
+
+#right-arm {
+	right: -60px;
+}
+
+#left-arm {
+	left: -60px;
+}
+
+.eye {
+	background-color: white;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	position: absolute;
+	top: 45%;
+}
+#left-eye{
+	left:25%;
+}
+#right-eye{
+	right:25%;
+}
+
+.antenna {
+	height: 45px;
+	width: 7px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	position: absolute;
+	background-color: inherit;
+}
+
+#left-antenna {
+	left: 20%;
+	top: -25px;
+	transform: rotate(-30deg);
+		-webkit-transform: rotate(-30deg)
+}
+
+#right-antenna {
+	right: 20%;
+	top: -25px;
+	transform: rotate(30deg);
+		-webkit-transform: rotate(30deg)
+}
+
+#head:hover {
+	transform: rotate(-5deg) translate(-4px, -8px);
+		-webkit-transform: rotate(-5deg) translate(-4px, -8px);
+		-moz-transform: rotate(-5deg) translate(-4px, -8px);
+}	
+
+#left-arm:hover {
+	transform: rotate(15deg) translate(-15px, 2px);
+		-webkit-transform: rotate(15deg) translate(-15px, 2px);
+		-moz-transform: rotate(15deg) translate(-15px, 2px);
+}
+
+#right-arm:hover {
+	transform: rotate(-15deg) translate(15px, 2px);
+		-webkit-transform: rotate(-15deg) translate(15px, 2px);
+		-moz-transform: rotate(-15deg) translate(15px, 2px);
+}
+
+#head, #left-arm, #right-arm {
+	-webkit-transition: all 0.2s ease-in;
+}
+
+#text {
+	position: absolute;
+	top: 15%;
+	left: 15%;
+	width: 200px;
+	font-size: 20px;
+	font-family: Tahoma;
+	font-weight: bolder;
+}
+
+#description {
+	transform: rotate(-20deg);
+		-webkit-transform: rotate(-20deg)
+}
+
+#author {
+	text-align: center;
+	margin-top: 220px;
+	font-weight: normal;
+	font-size: 15px;
+	font-family: Tahoma;
+}
