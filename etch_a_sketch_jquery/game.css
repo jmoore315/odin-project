@@ -1,0 +1,45 @@
+#wrapper {
+/*	width: 840px;
+	height: 840px;
+	background-color: orange;
+	border-radius: 15px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px;
+	overflow: visible;*/
+	margin-left: auto;
+	margin-right: auto;
+	margin: 0 auto;
+	display: inline-block;
+	border: 20px solid orange;
+	border-radius: 20px;
+}
+
+.square {
+	background-color: red;
+	border:1px solid gray;
+	float: left;
+}
+
+.clearfix {
+	clear: both;
+}
+
+#wrapper-border {
+	width: 880px;
+	background-color: orange;
+	border-radius: 20px;
+}
+
+#options-bar {
+	margin-left: auto;
+	margin-right: auto;
+	width: 300px;
+	margin-bottom: 20px;
+}
+
+#outer-wrapper{
+	text-align: center;
+	width: 100%;
+}
