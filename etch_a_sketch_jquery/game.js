@@ -82,6 +82,7 @@ function computeDimensions(n){
 
 function clearBoard() {
 	$('.square').css('background-color','red');
+	$('.square').css('opacity',1);
 }
 
 function changeGameType(element) {
