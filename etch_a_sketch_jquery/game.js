@@ -32,8 +32,9 @@ function buildBoard(n){
 		}
 		$('#wrapper').append('<div class="clearfix"></div>');
 	}
-	$('.square').css('height', computeDimensions(n));
-	$('.square').css('width', computeDimensions(n));
+	var squareWidth = computeDimensions(n);
+	$('.square').css('height', squareWidth);
+	$('.square').css('width', squareWidth);
 }
 
 function changeColor() {
