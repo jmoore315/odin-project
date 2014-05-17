@@ -1,16 +1,22 @@
 var n = 20;
-var boardsize = 840;
+var boardsize = 640;
+var gameType = 1;
 
+// Game types:
+// 1: Normal
+// 2: Gradient
+// 3: Random color
+// 4: Fading trail 
 
 $(document).ready( function() {
 	buildBoard(n);
 
 	$(document).on('mouseenter','.square', function() {
-		$(this).css('background-color','black');
+		changeColor(this);
 	});
 
 	$("#clear").click( function() {
-		$('.square').css('background-color','red');
+		clearBoard();
 	});
 
 	$("#set_size").click( function() {
@@ -22,6 +28,15 @@ $(document).ready( function() {
 
 	});
 
+	$("input[name=game-type]").change( function() {
+		changeGameType(this);
+		});
+
+	$(document).on('mouseout','.square', function() {
+		//If fading trail gameType, fade the square back to red
+		if ( gameType == 4)
+			$(this).fadeTo(800,1);
+	});
 });
 
 function buildBoard(n){
@@ -37,21 +52,48 @@ function buildBoard(n){
 	$('.square').css('width', squareWidth);
 }
 
-function changeColor() {
-	$(this).css('background-color','black');
+function changeColor(element) {
+	switch (gameType) {
+		case 1:
+			//Normal
+			$(element).css('background-color','black');
+		break;
+		case 2:
+			//Gradient
+			var op = $(element).css("opacity");
+			$(element).css("opacity", (op > 0.15) ? (op - 0.15) : 0);
+			break;
+		case 3:
+			//Random color
+			var randColor = getRandomColor();
+			$(element).css('background-color',randColor);
+		break;
+		case 4:
+			//Fading trail
+			$(element).css("opacity", 0);
+
+		break;
+	}
 }
 
 function computeDimensions(n){
 	return boardsize/n - 2; //-2 for borders
 }
 
-$("#clear").click( function() {
-	// $('#wrapper').empty();
-	$('.square').css('background-color','red');
-	// buildBoard(n);
-});
-
-
 function clearBoard() {
 	$('.square').css('background-color','red');
+}
+
+function changeGameType(element) {
+	gameType = parseInt($(element).attr('id'));
+	buildBoard(n);
+}
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
