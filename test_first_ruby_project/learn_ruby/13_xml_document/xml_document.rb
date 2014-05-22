@@ -12,9 +12,7 @@ class XmlDocument
 		result += "<#{method}"
 		unless args[0].nil?
 			result += " "
-			args[0].each do |k,v| 
-				result += "#{k}='#{v}'"
-			end
+			args[0].each { |k,v| result += "#{k}='#{v}'" }
 		end
 
 		if block 
