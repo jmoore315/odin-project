@@ -10,5 +10,10 @@
 <h3>Test first Ruby project</h3>
 <p>Solutions for some of the <a href="http://testfirst.org/learn_ruby">Test First Ruby Project</a> exercises.</p>
 <p></p>
-<h3>Caesar Cipher</h3>
-<p>A simple Ruby program that ciphers an input string using a simple character shift encryption.</p>
+<h3>Ruby Building Blocks</h3>
+<p>A few simple Ruby programs:</p>
+<ul>
+	<li>Caesar Cypher: Ciphers an input string using a simple character shift encryption.</li>
+	<li>Stock Picker: Given an array of integers representing stock prices, finds the best days to buy and sell the stocks.</li>
+	<li>Substrings: Find occurrences of words in an input string.</li>
+</ul>
