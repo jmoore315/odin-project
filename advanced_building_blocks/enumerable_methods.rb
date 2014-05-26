@@ -46,7 +46,7 @@ module Enumerable
   def my_inject(sym)
     return self if self.empty?
     result = self[0]
-    self.my_each { |i| result = result.send sym, i if i > 0  }
+    self.my_each_with_index { |num,index| result = result.send sym, num if index > 0  }
     result
   end
 

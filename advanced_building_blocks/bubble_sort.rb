@@ -31,7 +31,3 @@ def bubble_sort_by(input_arr)
 	end
 	arr
 end
-
-
-p bubble_sort_by(["hi","hello","hey"]) { |left, right| right.length - left.length }
-# #=> ["hi", "hey", "hello"]
