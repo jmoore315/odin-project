@@ -17,3 +17,10 @@
 	<li>Stock Picker: Given an array of integers representing stock prices, finds the best days to buy and sell the stocks.</li>
 	<li>Substrings: Find occurrences of words in an input string.</li>
 </ul>
+<h3>Procs and Blocks</h3>
+<p>A couple more "advanced" Ruby programs (still pretty simple)</p>
+<ul>
+	<li>Bubble Sort with comparator: Sorts an array using bubble sort with a comparator passed as a block</li>
+	<li>Enumerable methods: Writing some of the more common enumerable methods (each, any?, map, etc) from scratch.</li>
+</ul>
+
