@@ -2,24 +2,22 @@ require './tic_tac_toe.rb'
 require 'rspec'
 
 describe "Tic Tac Toe" do 
-	describe "Game" do
-		before { @game = Game.new }
+	before { @game = Game.new }
 
+	describe "Game" do
 		subject { @game }
 		it { should respond_to(:players) } 
 		it { should respond_to(:board) }
+		it { should respond_to(:mark) }
 		it { should respond_to(:game_over?) }
 		it { should respond_to(:winner) }
-	end
+		it { should respond_to(:display_board) }
+		its(:board){ should == [[" "," "," "],[" "," "," "],[" "," "," "]] }
 
-	describe "Board" do
-		before { @board = Board.new }
-
-		subject { @board }
-		it { should respond_to(:mark) }
-		it { should respond_to(:print) }
-		it { should respond_to(:board) }
-		its(:board){ should == [[" "," "," "][" "," "," "],[" "," "," "]] }
+		describe "mark" do
+			before { @game.mark(1,1,@game.players[1]) }
+			its(:board) { should == [[" "," "," "],[" ","X"," "],[" "," "," "]] }
+		end
 	end
 
 	describe "Player" do
