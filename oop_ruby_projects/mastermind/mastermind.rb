@@ -23,5 +23,5 @@ end
 #classes:
 	#Mastermind (state of game, plays, etc)
 		#Board
-			#Guess[]
-			#Key[]
+			#Guess[]  -  array of guesses. Each guess has a color symbol array representing the guess
+			#GuessResult[]  - array of guess results. Num correct spot, num correct color 

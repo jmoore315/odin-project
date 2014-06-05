@@ -1,0 +1,2 @@
+class GuessResult
+end
