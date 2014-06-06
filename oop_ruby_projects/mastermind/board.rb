@@ -18,6 +18,12 @@ class Board
 
 	private 
 		def get_code_from_computer
+			charset = %w{ R B G W M Y}
+			result = ""
+			4.times do 
+				result += charset.shuffle.first
+			end
+			result
 		end
 
 		def get_code_from_human
