@@ -4,9 +4,8 @@ class Guess
 	attr_accessor :data
 
 	def initialize (data)
-		puts data
 		if data.class == String && data.strip.length == 4 && data.strip.upcase.split("").all? { |color| @@colors.include? color }
-			@data = data
+			@data = data.upcase
 		else
 			raise ArgumentError 
 		end
@@ -28,5 +27,13 @@ class Guess
 		end
 
 		return (". "*num_dots + "- "*num_dashes).strip
+	end
+
+	def self.colors_to_s
+		"R: Red, G: Green, B: Blue, Y: Yellow, M:Magenta, W: White"
+	end
+
+	def pretty_print
+		data.split("").join("  ").strip
 	end
 end

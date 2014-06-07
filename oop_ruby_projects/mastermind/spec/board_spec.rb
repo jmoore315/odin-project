@@ -37,6 +37,27 @@ describe Board do
 		end
 	end
 
+	describe "#clear" do 
+		before(:each) do 
+			@board.guesses.push Guess.new "RBRB"
+		end
+
+		it "clears the guess array" do 
+			@board.clear 
+			@board.guesses.should == []
+		end
+
+		it "clears the guess_results array" do
+			@board.clear
+			@board.guess_results.should == []
+		end
+
+		it "clears the code" do 
+			@board.clear
+			@board.code.should be_nil
+		end
+	end
+
 	describe "#get_guess" do 
 
 		before do 
@@ -73,5 +94,37 @@ describe Board do
 				@board.guess_results.first.should == ". -"
 			end
 		end
+	end
+
+	describe "#display" do 
+		before do
+   	 $stdout = StringIO.new
+ 		 end
+
+  	after(:all) do
+    	$stdout = STDOUT
+  	end
+
+		it "should print the current board" do 
+			@board.guesses.push Guess.new "RGRG"
+   	 	@board.guesses.push Guess.new "YYRG"
+   	 	@board.guess_results.push ". . - -"
+   	 	@board.guess_results.push ". -"
+			@board.display
+			
+			$stdout.string.should == \
+			 " #|     Guess    |   Result" + \
+			 "\n-----------------------------" + \
+			 "\n 1|  R  G  R  G  |  . . - -" + \
+			 "\n 2|  Y  Y  R  G  |  . -" + \
+			 "\n 3|  " + \
+			 "\n 4|  " + \
+			 "\n 5|  " + \
+			 "\n 6|  " + \
+			 "\n 7|  " + \
+			 "\n 8|  " + \
+			 "\n 9|  " + \
+			 "\n10|  \n"
+		end 
 	end
 end
