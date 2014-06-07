@@ -31,10 +31,47 @@ describe Board do
 		end
 
 		it "generates a random code for computer codemaker" do 
-			let(:randomized_code) { "WYBB" }
-			Kernel.stub(:rand).with(anything) { randomized_code }
+			Array.any_instance.stub(:shuffle).and_return(["W"],["Y"],["B"],["B"])
 			@board.get_code(:computer)
-			@board.code.should == "WYBB"
+			@board.code.data.should == "WYBB"
+		end
+	end
+
+	describe "#get_guess" do 
+
+		before do 
+			@board.code = Guess.new "RGBY"
+		end
+
+		context "from a human codebreaker" do 
+
+			before do 
+				@board.stub(:gets).and_return('BAD INPUT', 'RRAH', 'RGBY')
+				@board.get_guess(:human)
+			end
+
+			it "adds the guess to the guesses array" do 
+				@board.guesses.first.data.should == "RGBY"
+			end
+
+			it "adds the correct guess result to the guess_results array" do 
+				@board.guess_results.first.should == ". . . ."
+			end
+		end
+
+		context "from a computer codebreaker" do
+			before do 
+				Array.any_instance.stub(:shuffle).and_return(["W"],["Y"],["B"],["B"])
+				@board.get_guess(:computer)
+			end
+
+			it "adds the guess to the guesses array" do 
+				@board.guesses.first.data.should == "WYBB"
+			end
+
+			it "adds the correct guess result to the guess_results array" do 
+				@board.guess_results.first.should == ". -"
+			end
 		end
 	end
 end
