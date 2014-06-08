@@ -23,4 +23,10 @@
 	<li>Bubble Sort with comparator: Sorts an array using bubble sort with a comparator passed as a block</li>
 	<li>Enumerable methods: Writing some of the more common enumerable methods (each, any?, map, etc) from scratch.</li>
 </ul>
+<h3>Ruby OOP Games</h3>
+<p>Two classic games for Terminal written in Ruby:</p>
+<ul>
+	<li>Tic Tac Toe: Nothing unusual here.</li>
+	<li>Mastermind: Guess the computer's code or try to stump the computer with your own code. Complete with AI and a full RSpec test suite.</li>
+</ul>
 
