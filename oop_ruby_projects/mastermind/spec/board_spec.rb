@@ -68,7 +68,7 @@ describe Board do
 
 			before do 
 				@board.stub(:gets).and_return('BAD INPUT', 'RRAH', 'RGBY')
-				@board.get_guess(:human)
+				@board.get_guess(:computer)
 			end
 
 			it "adds the guess to the guesses array" do 
@@ -83,7 +83,7 @@ describe Board do
 		context "from a computer codebreaker" do
 			before do 
 				Array.any_instance.stub(:shuffle).and_return(["W"],["Y"],["B"],["B"])
-				@board.get_guess(:computer)
+				@board.get_guess(:human)
 			end
 
 			it "adds the guess to the guesses array" do 
@@ -93,6 +93,17 @@ describe Board do
 			it "adds the correct guess result to the guess_results array" do 
 				@board.guess_results.first.should == ". -"
 			end
+		end
+
+		context "from a computer codebreaker with only 1 possible_code" do 
+			before do 
+				@board.possible_codes = [].push Guess.new "YBWG"
+				@board.get_guess(:human)
+			end
+
+			it "guesses the only possible code" do 
+				@board.guesses.first.data.should == "YBWG"
+			end 
 		end
 	end
 
@@ -126,5 +137,31 @@ describe Board do
 			 "\n 9|  " + \
 			 "\n10|  \n"
 		end 
+	end
+
+	describe "#remove_invalid_codes" do 
+		before do 
+			@board.possible_codes = Guess.get_all_codes
+			@guess = Guess.new "YYYY"
+			@guess_result = ""
+		end
+
+		it "removes codes with colors that don't match" do 
+			@board.send(:remove_invalid_codes, @guess, @guess_result)
+			contains_yellow = false
+			@board.possible_codes.each do |code|
+				if (code.data.count "Y") != 0
+					contains_yellow = true
+					break
+				end
+			end
+			@board.possible_codes.length.should == 625
+			contains_yellow.should be_false
+		end
+
+		it "keeps codes that are still valid" do 
+			@board.send(:remove_invalid_codes, @guess, @guess_result)
+			@board.possible_codes.any? { |code| code.data == "RGBR" }
+		end
 	end
 end

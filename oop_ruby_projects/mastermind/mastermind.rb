@@ -1,4 +1,4 @@
-require './board'
+require_relative './board'
 
 class Mastermind
 	attr_accessor :board, :guesses_made, :codemaker
@@ -87,7 +87,7 @@ class Mastermind
 
 	def print_how_to_play
 		puts "How to play:"
-		puts "Mastermind is a logic game where the objective is to guess your oponents secret code."
+		puts "Mastermind is a logic game where the objective is to guess your oponent's secret code."
 		puts "The code is a sequence of 4 colors in a specific order. Each turn, you will guess a sequence of colors to try to guess the code."
 		puts "For every correct color in a correct place, you will receive a '.'"
 		puts "For every correct color in an incorrect place, you will receive a '-'"

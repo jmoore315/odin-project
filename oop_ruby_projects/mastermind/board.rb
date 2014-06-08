@@ -1,7 +1,7 @@
-require './guess'
+require_relative './guess'
 
 class Board
-	attr_accessor :guesses, :guess_results, :code, :max_guesses, :winner
+	attr_accessor :guesses, :guess_results, :code, :max_guesses, :winner, :possible_codes
 	@@max_guesses = 10
 	@game_over = false
 	@winner = false
@@ -9,6 +9,7 @@ class Board
 	def initialize 
 		@guesses = []
 		@guess_results = []
+		@possible_codes = nil
 	end
 
 	def get_code(codemaker)
@@ -40,6 +41,9 @@ class Board
 			@game_over = true 
 			@winner = false
 		end
+		if codemaker == :human
+			remove_invalid_codes(guess,result)
+		end
 	end
 
 	def clear
@@ -48,6 +52,7 @@ class Board
 		@code = nil
 		@winner = false
 		@game_over = false
+		@possible_codes = nil
 	end
 
 	def display
@@ -95,12 +100,8 @@ class Board
 		end
 
 		def get_guess_from_computer
-			charset = %w{ R B G W M Y}
-			result = ""
-			4.times do 
-				result += charset.shuffle.first
-			end
-			Guess.new result
+			@possible_codes ||= Guess.get_all_codes
+			@possible_codes.shuffle.first
 		end
 
 		def get_guess_from_human
@@ -113,7 +114,35 @@ class Board
 					return guess
 				rescue 
 					puts "Invalid guess input. Please try again."
+				end
 			end
 		end
-	end
+
+		def remove_invalid_codes(guess,guess_result)
+			puts "here!"
+			new_array = []
+			num_dashes_and_dots = get_num_dashes_and_dots(guess_result)
+			if guess_result == ""
+				@possible_codes.each do |code|
+					guess.data.each_char do |c| 
+						unless code.data.count(c) > 0 
+							new_array.push(code)
+						end
+					end
+				end
+			else
+				@possible_codes.each do |code|
+					new_array.push code if code.has_n_colors_matching?(guess, num_dashes_and_dots)
+				end
+			end 
+		  #remove code if n does not match
+		  #remove code if n-1 does not match
+		  @possible_codes = new_array.uniq
+		  @possible_codes.delete guess 
+		end
+
+		def get_num_dashes_and_dots(guess_result)
+			guess_result.count('.') + guess_result.count('-')
+		end
+
 end

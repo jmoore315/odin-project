@@ -53,5 +53,42 @@ describe Guess do
 		end
 	end
 
+	describe ".get_all_codes" do
+		it "returns an array of all guess permutations" do 
+			all_possible_codes = Guess.get_all_codes
+			all_possible_codes.length.should == 6**4
+		end
+	end
 
+	describe "#has_n_colors_matching?" do
+		context "with n = 0" do 
+			it "with no colors matching" do 
+				guess = Guess.new "YYYY"
+				result = @guess.has_n_colors_matching?(guess, 0)
+				result.should be_true 
+			end
+			it "with a matching color" do 
+				guess = Guess.new "RYYY"
+				result = @guess.has_n_colors_matching?(guess, 0)
+				result.should be_false
+			end
+		end
+		context "with n = 1" do 
+			it "with no colors matching" do
+				guess = Guess.new "YYYY"
+				result = @guess.has_n_colors_matching?(guess, 1)
+				result.should be_false
+			end 
+			it "with a matching color" do 
+				guess = Guess.new "RYYY"
+				result = @guess.has_n_colors_matching?(guess, 1)
+				result.should be_true
+			end
+			it "with two matching colors" do 
+				guess = Guess.new "RBYY"
+				result = @guess.has_n_colors_matching?(guess, 1)
+				result.should be_false
+			end
+		end
+	end
 end

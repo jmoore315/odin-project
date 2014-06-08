@@ -1,4 +1,4 @@
-require 'rspec'
+require "rspec"
 require_relative '../mastermind'
 require_relative '../board'
 require_relative '../guess'
