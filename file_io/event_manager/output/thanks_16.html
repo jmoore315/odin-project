@@ -4,7 +4,7 @@
     <title>Thank You!</title>
   </head>
   <body>
-    <h1>Thanks <%= name %></h1>
+    <h1>Thanks Shannon</h1>
     <p>Thanks for coming to our conference.  We couldn't have done it without you!</p>
 
     <p>
@@ -14,19 +14,27 @@
 
     <table>
     <tr><th>Name</th><th>Website</th></tr>
-      <% legislators.each do |legislator| %>
+      
         <tr>
-          <td><%= "#{legislator.first_name} #{legislator.last_name}" %></td>
-          <td><%= "#{legislator.website}" %></td>
+          <td>Ann Kuster</td>
+          <td>http://kuster.house.gov</td>
         </tr>
-      <% end %>
+      
+        <tr>
+          <td>Kelly Ayotte</td>
+          <td>http://www.ayotte.senate.gov</td>
+        </tr>
+      
+        <tr>
+          <td>Jeanne Shaheen</td>
+          <td>http://www.shaheen.senate.gov</td>
+        </tr>
+      
     </table>
     <p>
-      <% if phone == "(000) 000-0000" %>
-        The phone number we have on file for you is incorrect or missing.
-      <% else %>
-        <%= "Your phone number is #{phone}." %>
-      <% end %>
+      
+        Your phone number is (603) 305-3000.
+      
     </p>
   </body>
 </html>
