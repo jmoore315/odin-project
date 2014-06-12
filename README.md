@@ -29,4 +29,9 @@
 	<li>Tic Tac Toe: Nothing unusual here.</li>
 	<li>Mastermind: Guess the computer's code or try to stump the computer with your own code. Complete with AI and a full RSpec test suite.</li>
 </ul>
+<h3>File I/O Projects</h3>
+<ul>
+  <li>Event Manager: a Ruby script to read data from a CSV file and generate personalized letters. Uses the Ruby 'sunlight' gem to make API calls to the Congressional Sunlight API.</li>
+  <li>Hangman: The classic game written in Ruby, along with YAML serialization for saving/loading games.</li>
+</ul>
 
