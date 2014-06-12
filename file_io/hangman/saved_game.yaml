@@ -1,0 +1,18 @@
+--- !ruby/object:Game
+guesses:
+- A
+- S
+- E
+- R
+- G
+guess_results:
+- 
+- 1
+- 
+- 
+- 
+- 1
+- 1
+- 1
+word: handbreadth
+remaining_guesses: 4

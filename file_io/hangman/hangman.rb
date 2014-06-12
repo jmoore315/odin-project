@@ -1,31 +1,46 @@
+require 'YAML'
+
 class Game
+
+  @@word_list = nil
 
   def initialize
     @guesses = []
     @guess_results = [] #boolean array of the same length as @word. Entry is 1 if correct, 0 otherwise
-    @word_list = load_words
+    @@word_list ||= Game.load_words
     @word = select_random_word
-    puts "word length is #{@word.length}"
-    gets
     @remaining_guesses = 6
   end
 
   def save
+    yaml = YAML::dump(self)
+    game_file = File.open("./saved_game.yaml", 'w+')
+    game_file.write(yaml)
+    game_file.close 
   end
 
-  def load 
+  def self.load 
+    game_file = File.open("./saved_game.yaml", 'r')
+    yaml = game_file.read
+    @@word_list ||= Game.load_words
+    YAML::load(yaml)
   end
 
   def play
+    display_game_info
     until won? or lost? do 
-      display_game_info
       move = get_move 
-      compute_results(move)
+      if move.upcase == 'SAVE'
+        save
+      else 
+        compute_results(move)
+      end
+      display_game_info
     end
     if won?
       puts "Congrats, you won!"
     else 
-      puts "Sorry, you lost! The correct word was #{@word} with length #{@word.length}"
+      puts "Sorry, you lost! The correct word was '#{@word}'"
     end
   end
 
@@ -100,23 +115,20 @@ class Game
     puts "\n"
   end
 
-  def load_words
+  def self.load_words
     words = []
-    lines = File.readlines("5desk.txt")
-    lines.each do |word|
-      words.push word
+    IO.foreach("5desk.txt") do |word|
+      words.push word.chomp
     end
+    words
   end
 
   def select_random_word
     valid = false
     until valid do 
-      word = @word_list[rand(0...@word_list.length)]
+      word = @@word_list[rand(0...@@word_list.length)]
       valid = word.length.between?(5,12)
-      puts "word length is #{word.length}"
     end
-    @word = word
-    puts "word length is #{@word.length}"
     word
   end
 
@@ -133,7 +145,7 @@ class Game
   end 
 
   def print_options
-    "Enter a letter to guess (case insensitive): "
+    print "Enter a letter to guess (case insensitive), 'save' to save your game, or 'quit' to quit:  "
   end 
 
   def print_guesses
@@ -157,8 +169,8 @@ class Game
   end
 
   def get_move
-    print_options
     valid = false
+    print_options
     until valid do 
       move = gets.chomp.upcase 
       if move.length == 1 && move.match(/[A-Z]/)
@@ -168,11 +180,17 @@ class Game
           @guesses.push move
           valid = true
         end
+      elsif move.upcase == 'SAVE'
+        valid = true
+      elsif move.upcase == 'QUIT'
+        puts "Thanks for playing!"
+        exit
       else
-        puts "Bad entry...enter a letter a-z to guess."
+        puts "Bad entry."
+        print_options
       end
     end
-    move 
+    move.upcase
   end
 
   def compute_results(move)
@@ -188,6 +206,7 @@ class Game
 end
 
 
+system "clear" or system "cls" 
 
 puts "Welcome to Hangman!"
 loop do 
