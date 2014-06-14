@@ -40,7 +40,7 @@ class MicroBlogger
   end
 
   def everyones_last_tweet
-    friends = @client.friends.sort { |x,y| x.screen_name.downcase <=> y.screen_name.downcase }
+    friends = @client.friends.sort_by { |friend| friend.screen_name.downcase }
     friends.each do |friend|
       last_tweet = friend.status.text
       timestamp = friend.status.created_at
