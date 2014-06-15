@@ -18,6 +18,8 @@ end
 
 def parse_response(response)
   header,body = response.split("\r\n\r\n")
+  #puts header
+  #puts body
   if header =~ /200/
     print body 
   elsif header =~ /\d\d\d/
@@ -52,7 +54,7 @@ loop do
       print "Enter filename (e.g., 'index.html'): "
       file = gets.chomp.insert(0,'/')
       params = get_post_params.to_json
-      s.print "#{type} #{file} HTTP/1.0\\r\\nContent-Length: #{params.length}\\r\\n#\\r\\n{params}"
+      s.print "#{type} #{file} HTTP/1.0\\r\\nContent-Length: #{params.length}\\r\\n\\r\\n#{params}"
       parse_response s.read 
       # puts "Post request"
       # puts params
