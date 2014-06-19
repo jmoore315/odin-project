@@ -4,7 +4,7 @@
 <p>This repo serves as a collection of the small projects I work on while completing the <a href="http://www.theodinproject.com/">The Odin Project</a></p>
 <p>Projects are listed below.</p>
 <h3>Android logo in HTML and CSS</h3>
-<p>View me at: <a href="https://rawgit.com/jmoore315/odin-project/master/android.html">https://rawgit.com/jmoore315/odin-project/master/android.html</a></p>
+<p>View me at: <a href="https://rawgit.com/jmoore315/odin-project/master/android_logo/android.html">https://rawgit.com/jmoore315/odin-project/master/android.html</a></p>
 <h3>Etch-a-sketch in jQuery</h3>
 <p>View me at <a href="https://rawgit.com/jmoore315/odin-project/master/etch_a_sketch_jquery/game.html">https://rawgit.com/jmoore315/odin-project/master/etch_a_sketch_jquery/game.html</a></p>
 <h3>Test first Ruby project</h3>
@@ -34,4 +34,14 @@
   <li>Event Manager: a Ruby script to read data from a CSV file and generate personalized letters. Uses the Ruby 'sunlight' gem to make API calls to the Congressional Sunlight API.</li>
   <li>Hangman: The classic game written in Ruby, along with YAML serialization for saving/loading games.</li>
 </ul>
-
+<h3>Network Programming</h3>
+<ul>
+	<li>Twitter Spambot: a small Ruby program that connects to the Twitter API with the jumpstart_auth gem to make Tweets, send messages, and display other information. Created by following along <a href="http://tutorials.jumpstartlab.com/projects/microblogger.html">Jumpstart Lab's Project</a></li>
+	<li>Simple Client Server: a server and client that can receive/send GET and POST requests and respond appropriately.</li>
+</ul>
+<h3>Recursion</h3>
+<p>Fibonacci number calculation and Merge Sort in Ruby.</p>
+<h3>Binary Trees</h3>
+<p>BST generation and searching. BFS and DFS tree traversals</p>
+<h3>Knight's Travails</h3>
+<p>Calculate the shortest path for a Knight chesspiece from one spot on a chessboard to any other spot. Uses BFS.</p>
